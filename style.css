@@ -1,0 +1,297 @@
+/* ===== 配色 ===== */
+:root {
+  --bg: #fdf3f4;          /* 薄ピンクの背景 */
+  --card: #ffffff;        /* カード背景 */
+  --text: #4a3a3c;        /* 本文の文字色 */
+  --accent: #c94a5a;      /* 見出し・アクセント（りんごレッド） */
+  --accent-dark: #a63a48;
+  --border: #f1d4d8;      /* 枠線 */
+  --leaf: #6a9a4a;        /* りんごの葉 */
+  --stem: #7a5230;        /* りんごの軸 */
+}
+
+/* ===== 全体 ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  line-height: 1.8;
+}
+
+/* ===== ヘッダー ===== */
+header {
+  background: var(--card);
+  border-bottom: 3px solid var(--border);
+  padding: 24px 16px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0;
+  color: var(--accent);
+  font-size: 2rem;
+  letter-spacing: 0.08em;
+}
+
+h2 {
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-size: 1.3rem;
+  border-left: 5px solid var(--accent);
+  padding-left: 10px;
+}
+
+/* ===== メイン ===== */
+main {
+  max-width: 960px;
+  margin: 32px auto;
+  padding: 0 16px;
+  display: grid;
+  grid-template-columns: 1fr;   /* カフェ・レストランを縦に並べる */
+  gap: 24px;
+}
+
+/* 画像のセクションは横幅いっぱい */
+main section:first-child {
+  grid-column: 1 / -1;
+  text-align: center;
+}
+
+/* 画像：中央配置・角丸・画面幅に合わせて縮小 */
+main img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(201, 74, 90, 0.15);
+}
+
+/* カフェ・レストランのカード */
+main section:not(:first-child) {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 24px;
+}
+
+main p {
+  margin: 0;
+}
+
+/* 紹介文＋右側に写真 */
+.intro-with-photo {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.intro-text {
+  flex: 1;
+  min-width: 0;
+}
+
+/* おすすめメニュー */
+.intro-text h3 {
+  margin: 16px 0 6px;
+  color: var(--accent);
+  font-size: 1rem;
+}
+
+.intro-text ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.intro-text li {
+  position: relative;
+  padding-left: 1.4em;
+}
+
+.intro-text li::before {
+  content: "🍎";
+  position: absolute;
+  left: 0;
+  font-size: 0.85em;
+}
+
+.intro-with-photo img {
+  flex-shrink: 0;
+  width: 40%;
+  margin: 0;
+  border-radius: 10px;
+  box-shadow: none;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+
+/* ===== ご意見フォーム ===== */
+footer {
+  background: var(--card);
+  border-top: 3px solid var(--border);
+  padding: 32px 16px 48px;
+}
+
+footer section {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+form label {
+  width: 100%;
+  font-weight: bold;
+}
+
+form br {
+  display: none;
+}
+
+textarea {
+  flex: 0 1 50%;          /* 横幅は半分 */
+  min-width: 0;
+  height: 70px;           /* 高さも半分程度 */
+  min-height: 60px;
+  padding: 12px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  background: #fffafa;
+  color: var(--text);
+  font: inherit;
+  resize: vertical;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+/* ボタンと送信メッセージをまとめる枠 */
+.send-area {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 「送信完了！」の表示（ボタンの上） */
+.send-status {
+  margin: 0;
+  min-height: 1.8em;      /* 表示前後でボタンの位置がずれないように */
+  color: #e02020;
+  font-weight: bold;
+}
+
+/* ===== りんご型の「メッセージを送る」ボタン ===== */
+button {
+  position: relative;
+  flex-shrink: 0;
+  width: 92px;
+  height: 84px;
+  margin-top: 14px;       /* 葉と軸のぶんの余白 */
+  border: none;
+  border-radius: 50% 50% 45% 45% / 55% 55% 45% 45%;
+  background: radial-gradient(circle at 30% 30%, #ef7a86, var(--accent) 60%, var(--accent-dark));
+  color: #fff;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: bold;
+  line-height: 1.3;
+  padding: 0 10px;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(166, 58, 72, 0.3);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+/* 軸 */
+button::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 4px;
+  height: 14px;
+  background: var(--stem);
+  border-radius: 3px;
+  transform: translateX(-50%) rotate(8deg);
+}
+
+/* 葉 */
+button::after {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 54%;
+  width: 18px;
+  height: 10px;
+  background: var(--leaf);
+  border-radius: 0 100% 0 100%;
+  transform: rotate(-15deg);
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 18px rgba(166, 58, 72, 0.35);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+button:focus-visible {
+  outline: 3px solid var(--leaf);
+  outline-offset: 4px;
+}
+
+/* ===== スマホ向け ===== */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    margin: 20px auto;
+    gap: 16px;
+  }
+
+  main section:not(:first-child) {
+    padding: 16px;
+  }
+
+  .intro-with-photo {
+    flex-direction: column;
+  }
+
+  .intro-with-photo img {
+    width: 100%;
+    order: -1;            /* スマホではどちらも写真を上に */
+  }
+
+  form {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* スマホでは入力欄を横幅いっぱいに */
+  textarea {
+    flex: none;
+    width: 100%;
+  }
+
+  .send-area {
+    align-self: center;
+  }
+}
